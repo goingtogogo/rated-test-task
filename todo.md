@@ -1,0 +1,2 @@
+- public folder
+- 404 page?
