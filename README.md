@@ -1,30 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Rated Test Task
 
-## Getting Started
+This Next.js application fetches and displays cryptocurrency exchange data from the CoinGecko API in a paginated table format. The data is server-side rendered (SSR)
 
-First, run the development server:
+## Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+Check out the [live demo](https://rated-test-task.vercel.app/) deployed on Vercel🤖
+
+## How to Run
+
+To run the app locally:
+
+```sh
+git clone https://github.com/goingtogogo/rated-test-task.git
+cd rated
+npm i
+npm run dev 
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Features
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- Server-side rendering (SSR) with Next.js 
+- Data fetching and caching using [swr](https://swr.vercel.app/) library, which also includes automatic request retries on errors
+- Table rendering with React-table, a powerful headless UI library that provides rapid scalability
+- Styled using Styled Components inspired by Rated's color palette and styling🍬
+- Server-side pagination controls for the table, displaying 15 exchanges per page
+- Proper routing using Next.js for paginated data
+- Error handling for API fetch failures, including handling of API rate limiting (429 errors)
+- Ensured mobile-friendly design, with basic styles added to enhance mobile device viewing
+- Basic Jest tests included
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Technologies Used
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Next.js
+- swr 
+- React-table
+- Styled Components
+- Jest and React-Testing-Library
 
+## Screenshots
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+todo
