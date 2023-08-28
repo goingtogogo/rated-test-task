@@ -1,4 +1,4 @@
-import { DEFAULT_PAGE } from "./constants";
+import { DEFAULT_PAGE } from "../constants";
 
 export const getPage = (page?: string | number | string[]) => {
   const nPage = Number(page);

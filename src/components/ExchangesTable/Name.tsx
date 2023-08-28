@@ -1,10 +1,10 @@
+import { useMemo } from "react";
 import { Row } from "@tanstack/react-table"
 import Image from "next/image";
 import { styled } from "styled-components";
 
 import { Exchange } from "@/domain/exchanges";
 import { space } from "@/styles/variables";
-import { useMemo } from "react";
 
 export const Name = ({ row }: { row: Row<Exchange> }) => {
   const { original: { name, image } } = row;

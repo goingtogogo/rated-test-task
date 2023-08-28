@@ -1,5 +1,7 @@
-import { Name } from "@/components/ExchangesTable/Name";
 import { ColumnDef } from "@tanstack/react-table";
+
+import { Name } from "@/components/ExchangesTable/Name";
+import { spacify } from "@/utils/spacify/spacify";
 
 export type Exchange = {
   id: string;
@@ -41,12 +43,12 @@ export const exchangesSchema: ColumnDef<Exchange>[] = [
     id: 'trade_volume_24h_btc',
     header: '24h trade volume in BTC',
     accessorKey: 'trade_volume_24h_btc',
-    accessorFn: ({ trade_volume_24h_btc: tradeVolume24hBtc }) => `₿ ${tradeVolume24hBtc.toFixed(4)}`
+    accessorFn: ({ trade_volume_24h_btc: tradeVolume24hBtc }) => `₿ ${spacify(tradeVolume24hBtc.toFixed(4))}`
   },
   {
     id: 'trade_volume_24h_btc_normalized',
     header: 'Normalized 24h trade volume in BTC',
     accessorKey: 'trade_volume_24h_btc_normalized',
-    accessorFn: ({ trade_volume_24h_btc_normalized: tradeVolume24hBtcNorm }) => `₿ ${tradeVolume24hBtcNorm.toFixed(4)}`
+    accessorFn: ({ trade_volume_24h_btc_normalized: tradeVolume24hBtcNorm }) => `₿ ${spacify(tradeVolume24hBtcNorm.toFixed(4))}`
   }
 ]
