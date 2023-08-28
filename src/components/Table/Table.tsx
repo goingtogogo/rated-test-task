@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import useSWR from 'swr'
 import { ColumnDef, PaginationState, Row, getCoreRowModel, useReactTable } from '@tanstack/react-table';
-import { styled } from 'styled-components';
+
 
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from '@/utils/constants';
 import { URLBuilder } from '@/utils/URLBuilder';
@@ -10,6 +10,8 @@ import { Header } from './Header/Header';
 import { Body } from './Body/Body';
 import { Pagination } from './Pagination/Pagination';
 import { useRouter } from 'next/router';
+import { Text } from './Pagination/Pagination.styled';
+import { TableUI, Wrapper } from './Table.styled';
 
 type Props<DataType> = {
   apiUrl: string;
@@ -34,7 +36,7 @@ export const Table = <DataType,>({ schema, apiUrl, onRowClick }: Props<DataType>
         .setParams({ page: pageIndex + 1, per_page: pageSize })
         .toString()
     }),
-    [pageIndex, pageSize]
+    [pageIndex, pageSize, apiUrl]
   )
 
   const { data, error, isLoading } = useSWR(pagination.key);
@@ -49,7 +51,7 @@ export const Table = <DataType,>({ schema, apiUrl, onRowClick }: Props<DataType>
     })
 
     setPagination(cb)
-  }, [])
+  }, [router, pagination])
 
   const table = useReactTable({
     data,
@@ -57,23 +59,29 @@ export const Table = <DataType,>({ schema, apiUrl, onRowClick }: Props<DataType>
     state: {
       pagination,
     },
-    pageCount: 40,
+    pageCount: 42,
+    // @ts-ignore
     onPaginationChange: handlePaginationChange,
     getCoreRowModel: getCoreRowModel(),
     manualPagination: true,
   })
 
-  if (isLoading && !data) {
-    return <div>Loading...</div>
+  if (!data && isLoading) {
+    return <Text>🤖: Loading...</Text>
   }
 
-  if (error) {
-    <div>{error}</div>
+  if (error || data.error) {
+    return (
+      <Text>
+        🤖: Oops! It looks like something happened <br />
+        Reason: {error || data.error}
+      </Text>
+    )
   }
 
   if (data.length === 0) {
     return (
-      <div>No items</div>
+      <Text>🤖: Oops! No data to show. Please try again later, something might have happened.</Text>
     );
   }
 
@@ -89,7 +97,7 @@ export const Table = <DataType,>({ schema, apiUrl, onRowClick }: Props<DataType>
         setPageIndex={table.setPageIndex}
         setPageSize={table.setPageSize}
       />
-      <TableUI>
+      <TableUI loading={String(isLoading)}>
         <Header getHeaderGroups={table.getHeaderGroups} />
         <Body getRowModel={table.getRowModel} onRowClick={onRowClick} />
       </TableUI>
@@ -106,12 +114,3 @@ export const Table = <DataType,>({ schema, apiUrl, onRowClick }: Props<DataType>
     </Wrapper>
   )
 }
-
-const Wrapper = styled.div`
-  width: 100%;
-  overflow-x: auto;
-`
-const TableUI = styled.table`
-  width: 100%;
-  border-spacing: 0;
-`

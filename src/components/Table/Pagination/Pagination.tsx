@@ -32,14 +32,14 @@ export const Pagination = ({
         disabled={getState().pagination.pageIndex === 0}
         aria-label="Previous page"
       >
-        <ArrowLeft src="/arrow.svg" width="20" height="16" alt="arrow left" />
+        <ArrowLeft src="/arrow.svg" width="20" height="16" alt="arrow left" priority={true} />
       </Button>
       <Button
         onClick={() => nextPage()}
         disabled={!getCanNextPage()}
         aria-label="Next page"
       >
-        <ArrowRight src="/arrow.svg" width="20" height="16" alt="arrow right" />
+        <ArrowRight src="/arrow.svg" width="20" height="16" alt="arrow right" priority={true} />
       </Button>
       {/* <span>
         | Go to page:
