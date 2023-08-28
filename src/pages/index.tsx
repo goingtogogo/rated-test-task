@@ -14,7 +14,7 @@ import { URLBuilder } from '@/utils/URLBuilder';
 import { Header, Title, Wrapper } from '@/components/Main';
 
 
-export const API_URL = 'https://api.coingecko.com/api/v3/exchange'
+export const API_URL = 'https://api.coingecko.com/api/v3/exchanges'
 
 export default function Home({ fallback }: { fallback: { data: Exchange[] } }) {
 

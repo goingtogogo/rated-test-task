@@ -70,11 +70,11 @@ export const Table = <DataType,>({ schema, apiUrl, onRowClick }: Props<DataType>
     return <Text>🤖: Loading...</Text>
   }
 
-  if (error || data.error) {
+  if (error || data.error || data.status) {
     return (
       <Text>
         🤖: Oops! It looks like something happened <br />
-        Reason: {error || data.error}
+        Reason: {error?.toString() || data.error || `${data.status?.error_code} ${data.status?.error_message}`}
       </Text>
     )
   }

@@ -32,6 +32,7 @@ export const Name = ({ row }: { row: Row<Exchange> }) => {
 
 const Wrapper = styled.span`
   display: flex;
+  width: 230px;
   align-items: center;
 `
 

@@ -27,21 +27,21 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   render() {
-    console.log('ststs', this.state.hasError);
     if (this.state.hasError) {
       return (
-        <Wrapper>
-          <Text>
-            🤖: Oops! It looks like something happened <br />
-            Reason: {JSON.stringify(this.state.error)}
-          </Text>
+        <div style={{ margin: '96px auto', textAlign: 'center' }}>
+          <div style={{ fontSize: '32px' }}>
+            🤖: Oops! Something went wrong <br />
+            Reason: {this.state.error?.toString()}
+          </div>
           <button
             type="button"
             onClick={() => this.setState({ hasError: false })}
+            style={{ padding: '12px 16px', fontFamily: 'Plus Jakarta Sans', marginTop: '16px' }}
           >
             Try again?
           </button>
-        </Wrapper>
+        </div>
       )
     }
 
