@@ -3,7 +3,7 @@ import useSWR from 'swr'
 import { ColumnDef, PaginationState, Row, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
 
-import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from '@/utils/constants';
+import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, DEFAULT_PAGE_COUNT } from '@/utils/constants';
 import { URLBuilder } from '@/utils/URLBuilder';
 
 import { Header } from './Header/Header';
@@ -59,7 +59,7 @@ export const Table = <DataType,>({ schema, apiUrl, onRowClick }: Props<DataType>
     state: {
       pagination,
     },
-    pageCount: 42,
+    pageCount: DEFAULT_PAGE_COUNT,
     // @ts-ignore
     onPaginationChange: handlePaginationChange,
     getCoreRowModel: getCoreRowModel(),

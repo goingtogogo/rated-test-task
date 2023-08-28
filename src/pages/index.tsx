@@ -12,6 +12,7 @@ import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from '@/utils/constants';
 import { fetcher } from '@/utils/fetcher';
 import { URLBuilder } from '@/utils/URLBuilder';
 import { Header, Title, Wrapper } from '@/components/Main';
+import { getPage } from '@/utils/getPage';
 
 
 export const API_URL = 'https://api.coingecko.com/api/v3/exchanges'
@@ -42,7 +43,7 @@ export const getServerSideProps: GetServerSideProps<{ fallback: { [x: string]: E
   const url = new URLBuilder(API_URL)
     .setParams(
       {
-        page: String(query.page) || DEFAULT_PAGE + 1,
+        page: getPage(query.page),
         per_page: DEFAULT_PAGE_SIZE
       })
     .toString();
