@@ -1,3 +1,0 @@
-- public folder+
-- 404 page?
-- error handler
