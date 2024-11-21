@@ -5,27 +5,27 @@ import Document, {
   NextScript,
   DocumentContext,
 } from "next/document";
-import { ServerStyleSheet } from 'styled-components'
+import { ServerStyleSheet } from "styled-components";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    const sheet = new ServerStyleSheet()
-    const originalRenderPage = ctx.renderPage
+    const sheet = new ServerStyleSheet();
+    const originalRenderPage = ctx.renderPage;
 
     try {
       ctx.renderPage = () =>
         originalRenderPage({
           enhanceApp: (App) => (props) =>
             sheet.collectStyles(<App {...props} />),
-        })
+        });
 
-      const initialProps = await Document.getInitialProps(ctx)
+      const initialProps = await Document.getInitialProps(ctx);
       return {
         ...initialProps,
         styles: [initialProps.styles, sheet.getStyleElement()],
-      }
+      };
     } finally {
-      sheet.seal()
+      sheet.seal();
     }
   }
 
@@ -33,9 +33,22 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          {(process.env.NODE_ENV === "development" ||
+            process.env.VERCEL_ENV === "preview") && (
+            // eslint-disable-next-line @next/next/no-sync-scripts
+            <script
+              data-recording-token="h0kjuatNhUV0Gg49W8wk1q6wVraQCCyEYxmED8jh"
+              data-is-production-environment="false"
+              src="https://snippet.meticulous.ai/v1/meticulous.js"
+            />
+          )}
           {/* Google Fonts */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="anonymous"
+          />
           <link
             href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&family=Space+Grotesk:wght@500;700&display=swap"
             rel="stylesheet"
@@ -46,6 +59,6 @@ export default class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
