@@ -16,39 +16,41 @@ export type Exchange = {
   trust_score_rank: number;
   trade_volume_24h_btc: number;
   trade_volume_24h_btc_normalized: number;
-}
+};
 
 export const exchangesSchema: ColumnDef<Exchange>[] = [
   {
-    id: 'name',
-    header: 'Name',
-    cell: Name
+    id: "name",
+    header: "Name",
+    cell: Name,
   },
   {
-    id: 'year_established',
-    header: 'Year established',
-    accessorKey: 'year_established',
+    id: "year_established",
+    header: "Year established",
+    accessorKey: "year_established",
   },
   {
-    id: 'country',
-    header: 'Country',
-    accessorKey: 'country',
+    id: "country",
+    header: "Country",
+    accessorKey: "country",
   },
   {
-    id: 'trust_score',
-    header: 'Trust score',
-    accessorKey: 'trust_score',
+    id: "trust_score",
+    header: "Trust score",
+    accessorKey: "trust_score",
   },
   {
-    id: 'trade_volume_24h_btc',
-    header: '24h trade volume in BTC',
-    accessorKey: 'trade_volume_24h_btc',
-    accessorFn: ({ trade_volume_24h_btc: tradeVolume24hBtc }) => `₿ ${spacify(tradeVolume24hBtc.toFixed(4))}`
+    id: "trade_volume_24h_btc",
+    header: "24h trade volume in BTC",
+    accessorKey: "trade_volume_24h_btc",
+    accessorFn: ({ trade_volume_24h_btc: tradeVolume24hBtc }) =>
+      `₿ ${spacify(tradeVolume24hBtc?.toFixed(4))}`,
   },
   {
-    id: 'trade_volume_24h_btc_normalized',
-    header: 'Normalized 24h trade volume in BTC',
-    accessorKey: 'trade_volume_24h_btc_normalized',
-    accessorFn: ({ trade_volume_24h_btc_normalized: tradeVolume24hBtcNorm }) => `₿ ${spacify(tradeVolume24hBtcNorm.toFixed(4))}`
-  }
-]
+    id: "trade_volume_24h_btc_normalized",
+    header: "Normalized 24h trade volume in BTC",
+    accessorKey: "trade_volume_24h_btc_normalized",
+    accessorFn: ({ trade_volume_24h_btc_normalized: tradeVolume24hBtcNorm }) =>
+      `₿ ${spacify(tradeVolume24hBtcNorm?.toFixed(4))}`,
+  },
+];
